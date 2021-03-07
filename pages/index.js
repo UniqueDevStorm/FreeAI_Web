@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { createMuiTheme, MuiThemeProvider, CssBaseline, Toolbar, IconButton, Button } from '@material-ui/core';
 import Brightness7 from '@material-ui/icons/Brightness7';
 import React from 'react';
-import Link from 'next/link'
+import Link from 'next/link';
+import Cookies from 'cookies';
 
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -19,6 +20,7 @@ export default function App() {
           }),
       [isDarkMode],
   );
+
   return (
       <MuiThemeProvider theme={theme}>
         <CssBaseline />

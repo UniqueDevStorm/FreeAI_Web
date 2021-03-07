@@ -1,5 +1,6 @@
 import * as process from "process";
 import jwt from 'jsonwebtoken';
+import Cookies from 'cookies';
 
 export default async (req, res) => {
     const DISCORD_API_ENDPOINT = 'https://discord.com/api/v8'
@@ -33,5 +34,7 @@ export default async (req, res) => {
         }
     })).json())
     const user = jwt.sign(userinfo, process.env.JWT_SECRET)
-    res.send(user)
+    const cookies = new Cookies(req, res)
+    cookies.set('user', user)
+    res.redirect('../../')
 }
