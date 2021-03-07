@@ -4,9 +4,24 @@ import { createMuiTheme, MuiThemeProvider, CssBaseline, Toolbar, IconButton, But
 import Brightness7 from '@material-ui/icons/Brightness7';
 import React from 'react';
 import Link from 'next/link';
-import Cookies from 'cookies';
+import * as cookie from 'cookie'
+import jwt from 'jsonwebtoken';
+import * as process from "process";
 
-export default function App() {
+export async function getServerSideProps(ctx) {
+  const cookies = cookie.parse(ctx.req.headers.cookie);
+  let key;
+  const user = cookies.user;
+  try {
+    key = jwt.verify(user, process.env.JWT_SECRET)
+  } catch { key = null }
+  return {
+    props: key
+  }
+}
+
+export default function App({ ...data }) {
+  console.log(data)
   const [isDarkMode, setIsDarkMode] = useState(false);
   useEffect(() => {
     setIsDarkMode(localStorage.getItem('dark') !== null)
@@ -20,7 +35,6 @@ export default function App() {
           }),
       [isDarkMode],
   );
-
   return (
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
