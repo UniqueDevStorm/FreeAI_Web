@@ -1,6 +1,6 @@
 import 'semantic-ui-css/semantic.min.css';
 import { useState, useEffect } from "react";
-import { createMuiTheme, MuiThemeProvider, CssBaseline, Toolbar, IconButton } from '@material-ui/core';
+import { createMuiTheme, MuiThemeProvider, CssBaseline, Toolbar, IconButton, Button } from '@material-ui/core';
 import Brightness7 from '@material-ui/icons/Brightness7';
 import React from 'react';
 
@@ -21,8 +21,8 @@ export default function App() {
   return (
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ position: 'fixed', width: '100vw', right: 0, top: 0, textDecoration: 'none' }}>
+        <div style={{ textAlign: 'center', textDecoration: "none" }}>
+          <div style={{ position: 'fixed', left: 0, top: 0, outline: 'none' }}>
             <Toolbar>
               <div style={{ flexGrow: 1 }}>
                 <IconButton color='inherit' onClick={() => {
@@ -39,14 +39,11 @@ export default function App() {
               </div>
             </Toolbar>
           </div>
-          <style>
-            {`
-                    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
-                    * {
-                        font-family: 'Do Hyeon', sans-serif;
-                    }
-                `}
-          </style>
+          <div>
+            <Button variant="contained" color="primary" style={{ right: 15, top: 15, position: 'absolute' }}>
+              로그인
+            </Button>
+          </div>
           <img
               src={'/FreeAI.png'}
               style={{ marginTop: '20vh', borderRadius: '50%' }}
