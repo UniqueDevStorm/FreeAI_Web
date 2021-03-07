@@ -1,65 +1,59 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import 'semantic-ui-css/semantic.min.css';
+import { useState, useEffect } from "react";
+import { createMuiTheme, MuiThemeProvider, CssBaseline, Toolbar, IconButton } from '@material-ui/core';
+import Brightness7 from '@material-ui/icons/Brightness7';
+import React from 'react';
 
-export default function Home() {
+export default function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  useEffect(() => {
+    setIsDarkMode(localStorage.getItem('dark') !== null)
+  }, [])
+  const theme = React.useMemo(
+      () =>
+          createMuiTheme({
+            palette: {
+              type: isDarkMode ? 'dark' : 'light',
+            },
+          }),
+      [isDarkMode],
+  );
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline />
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ position: 'fixed', width: '100vw', right: 0, top: 0, textDecoration: 'none' }}>
+            <Toolbar>
+              <div style={{ flexGrow: 1 }}>
+                <IconButton color='inherit' onClick={() => {
+                  const value = !isDarkMode;
+                  setIsDarkMode(value);
+                  if (value) {
+                    localStorage.dark = '1';
+                  } else {
+                    delete localStorage.dark;
+                  }
+                }} >
+                  <Brightness7 />
+                </IconButton>
+              </div>
+            </Toolbar>
+          </div>
+          <style>
+            {`
+                    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+                    * {
+                        font-family: 'Do Hyeon', sans-serif;
+                    }
+                `}
+          </style>
+          <img
+              src={'/FreeAI.png'}
+              style={{ marginTop: '20vh', borderRadius: '50%' }}
+          />
+          <h1 style={{ fontSize: '50px' }}>FreeAI</h1>
+          <h2 style={{ fontSize: '50px' }}>많은 기능을 한봇에.</h2>
         </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+      </MuiThemeProvider>
   )
 }
