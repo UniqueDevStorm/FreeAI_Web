@@ -42,7 +42,7 @@ export default function App() {
           </div>
           <div>
             <Link href='/api/discord/oauth2'>
-              <Button variant="contained" color="primary" style={{ right: 15, top: 15, position: 'absolute' }}>
+              <Button variant="contained" color="primary" style={{ right: 15, top: 15, position: 'absolute', height: '40px', width: '100px' }}>
                 로그인
               </Button>
             </Link>
