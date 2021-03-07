@@ -1,4 +1,5 @@
 import * as process from "process";
+import jwt from 'jsonwebtoken';
 
 export default async (req, res) => {
     const DISCORD_API_ENDPOINT = 'https://discord.com/api/v8'
@@ -31,5 +32,6 @@ export default async (req, res) => {
             Authorization: `${type} ${token}`
         }
     })).json())
-    res.send(guildinfo)
+    const user = jwt.sign(userinfo, process.env.JWT_SECRET)
+    res.send(user)
 }
