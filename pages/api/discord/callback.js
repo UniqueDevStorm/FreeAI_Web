@@ -35,6 +35,8 @@ export default async (req, res) => {
     })).json())
     const user = jwt.sign(userinfo, process.env.JWT_SECRET)
     const cookies = new Cookies(req, res)
-    cookies.set('user', user)
+    cookies.set('user', user, {
+        httpOnly: false
+    })
     res.redirect('../../')
 }
