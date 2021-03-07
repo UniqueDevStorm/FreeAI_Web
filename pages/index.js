@@ -9,19 +9,19 @@ import jwt from 'jsonwebtoken';
 import * as process from "process";
 
 export async function getServerSideProps(ctx) {
-  const cookies = cookie.parse(ctx.req.headers.cookie);
-  let key;
-  const user = cookies.user;
+  let key = null;
   try {
+    const cookies = cookie.parse(ctx.req.headers.cookie);
+    const user = cookies.user;
     key = jwt.verify(user, process.env.JWT_SECRET)
   } catch { key = null }
   return {
-    props: key
+    props: { user: key }
   }
 }
 
-export default function App({ ...data }) {
-  console.log(data)
+export default function App({ ...key }) {
+  const data = key.user;
   const [isDarkMode, setIsDarkMode] = useState(false);
   useEffect(() => {
     setIsDarkMode(localStorage.getItem('dark') !== null)
@@ -35,6 +35,7 @@ export default function App({ ...data }) {
           }),
       [isDarkMode],
   );
+  console.log(data);
   return (
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
@@ -57,11 +58,13 @@ export default function App({ ...data }) {
             </Toolbar>
           </div>
           <div>
-            <Link href='/api/discord/oauth2'>
-              <Button variant="contained" color="primary" style={{ right: 15, top: 15, position: 'absolute', height: '40px', width: '100px', fontSize: '20px' }}>
-                로그인
-              </Button>
-            </Link>
+            {
+              data === null
+              ? <Link href='/api/discord/oauth2'><Button variant='contained' color="primary" style={{ right: 15, top: 15, position: 'absolute', height: '40px', width: '100px', fontSize: '20px' }}>로그인</Button></Link>
+              : (
+                  <img src={`https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.png`} style={{ right: 15, top: 15, position: 'absolute', borderRadius: '50%' }} />
+              )
+            }
           </div>
           <img
               src={'/FreeAI.png'}
