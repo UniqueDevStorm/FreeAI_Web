@@ -1,7 +1,8 @@
 import 'semantic-ui-css/semantic.min.css';
+import Logined from "../components/Logined";
+import DarkToggle from "../components/DarkToggle";
 import { useState, useEffect } from "react";
-import { createMuiTheme, MuiThemeProvider, CssBaseline, Toolbar, IconButton, Button } from '@material-ui/core';
-import Brightness7 from '@material-ui/icons/Brightness7';
+import { createMuiTheme, MuiThemeProvider, CssBaseline, Button } from '@material-ui/core';
 import React from 'react';
 import Link from 'next/link';
 import * as cookie from 'cookie'
@@ -35,35 +36,16 @@ export default function App({ ...key }) {
           }),
       [isDarkMode],
   );
-  console.log(data);
   return (
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
         <div style={{ textAlign: 'center', textDecoration: "none" }}>
-          <div style={{ position: 'fixed', left: 0, top: 0, outline: 'none' }}>
-            <Toolbar>
-              <div style={{ flexGrow: 1 }}>
-                <IconButton color='inherit' onClick={() => {
-                  const value = !isDarkMode;
-                  setIsDarkMode(value);
-                  if (value) {
-                    localStorage.dark = '1';
-                  } else {
-                    delete localStorage.dark;
-                  }
-                }} >
-                  <Brightness7 />
-                </IconButton>
-              </div>
-            </Toolbar>
-          </div>
+          <DarkToggle isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
           <div>
             {
               data === null
               ? <Link href='/api/discord/oauth2'><Button variant='contained' color="primary" style={{ right: 15, top: 15, position: 'absolute', height: '40px', width: '100px', fontSize: '20px' }}>로그인</Button></Link>
-              : (
-                  <img src={`https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.png`} style={{ right: 15, top: 15, position: 'absolute', borderRadius: '50%' }} />
-              )
+              : <Logined data={data} />
             }
           </div>
           <img
