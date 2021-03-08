@@ -4,7 +4,7 @@ import React from "react";
 
 export default function DarkToggle(props) {
     return (
-        <div style={{ position: 'fixed', left: 0, top: 0, outline: 'none' }}>
+        <div style={{ position: 'fixed', left: 10, top: 10, outline: 'none' }}>
             <Toolbar>
                 <div style={{ flexGrow: 1 }}>
                     <IconButton color='inherit' onClick={() => {

@@ -3,6 +3,7 @@ import Logined from "../components/Logined";
 import DarkToggle from "../components/DarkToggle";
 import { useState, useEffect } from "react";
 import { createMuiTheme, MuiThemeProvider, CssBaseline, Button } from '@material-ui/core';
+import { Menu } from 'semantic-ui-react';
 import React from 'react';
 import Link from 'next/link';
 import * as cookie from 'cookie'
