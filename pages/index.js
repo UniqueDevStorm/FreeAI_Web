@@ -1,14 +1,12 @@
-import 'semantic-ui-css/semantic.min.css';
 import Logined from "../components/Logined";
 import DarkToggle from "../components/DarkToggle";
 import { useState, useEffect } from "react";
 import { createMuiTheme, MuiThemeProvider, CssBaseline, Button } from '@material-ui/core';
-import { Menu } from 'semantic-ui-react';
 import React from 'react';
 import Link from 'next/link';
 import * as cookie from 'cookie'
-import jwt from 'jsonwebtoken';
 import * as process from "process";
+import jwt from 'jsonwebtoken';
 
 export async function getServerSideProps(ctx) {
   let key = null;

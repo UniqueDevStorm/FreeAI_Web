@@ -33,8 +33,8 @@ export default async (req, res) => {
             Authorization: `${type} ${token}`
         }
     })).json())
-    const user = jwt.sign(userinfo, process.env.JWT_SECRET)
-    const cookies = new Cookies(req, res)
+    const user = jwt.sign(userinfo, process.env.JWT_SECRET);
+    const cookies = new Cookies(req, res);
     cookies.set('user', user, {
         httpOnly: false
     })

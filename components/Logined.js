@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "semantic-ui-react";
+import ProfileImage from "./ProfileImage";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
@@ -25,7 +25,9 @@ export default function Logined(props) {
                 TransitionComponent={Fade}
             >
                 <MenuItem>{`${(props.data.username).slice(0, 10)}#${props.data.discriminator}`}</MenuItem>
-                <MenuItem onClick={handleClose}>MyPage</MenuItem>
+                <MenuItem onClick={() => {
+                    window.location.replace('/profile')
+                }}>MyPage</MenuItem>
                 <MenuItem style={{ backgroundColor: 'red' }} onClick={() => {
                     window.location.replace('/api/discord/logout')
                 }}>Logout</MenuItem>
