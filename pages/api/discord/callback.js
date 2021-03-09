@@ -28,7 +28,7 @@ export default async (req, res) => {
         }
     })).json())
     userinfo.token = token;
-    const user = jwt.sign(userinfo, process.env.CLIENT_ID);
+    const user = jwt.sign(userinfo, process.env.JWT_SECRET);
     const cookies = new Cookies(req, res);
     cookies.set('user', user, {
         httpOnly: false

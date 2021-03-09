@@ -2,6 +2,7 @@ import cookie from 'cookie';
 import jwt from 'jsonwebtoken';
 import * as process from "process";
 import ProfileImage from "../components/ProfileImage";
+import DataLoader from 'dataloader';
 
 export async function getServerSideProps(ctx) {
     let key = null;

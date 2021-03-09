@@ -13,10 +13,14 @@ export async function getServerSideProps(ctx) {
     try {
         const cookies = cookie.parse(ctx.req.headers.cookie);
         const user = cookies.user;
-        key = jwt.verify(user, process.env.JWT_SECRET)
-    } catch { key = null }
+        key = jwt.verify(user, process.env.JWT_SECRET);
+    } catch {
+        key = null
+    }
     return {
-        props: { user: key }
+        props: {
+            user: key
+        }
     }
 }
 
