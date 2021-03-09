@@ -27,12 +27,7 @@ export default async (req, res) => {
             Authorization: `${type} ${token}`
         }
     })).json())
-    const guildinfo = (await (await fetch(`${DISCORD_API_ENDPOINT}/users/@me/guilds`, {
-        method: 'GET',
-        headers: {
-            Authorization: `${type} ${token}`
-        }
-    })).json())
+    userinfo.token = token;
     const user = jwt.sign(userinfo, process.env.CLIENT_ID);
     const cookies = new Cookies(req, res);
     cookies.set('user', user, {

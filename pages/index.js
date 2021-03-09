@@ -9,15 +9,15 @@ import * as process from "process";
 import jwt from 'jsonwebtoken';
 
 export async function getServerSideProps(ctx) {
-  let key = null;
-  try {
-    const cookies = cookie.parse(ctx.req.headers.cookie);
-    const user = cookies.user;
-    key = jwt.verify(user, process.env.JWT_SECRET)
-  } catch { key = null }
-  return {
-    props: { user: key }
-  }
+    let key = null;
+    try {
+        const cookies = cookie.parse(ctx.req.headers.cookie);
+        const user = cookies.user;
+        key = jwt.verify(user, process.env.JWT_SECRET)
+    } catch { key = null }
+    return {
+        props: { user: key }
+    }
 }
 
 export default function App({ ...key }) {
