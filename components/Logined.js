@@ -1,5 +1,4 @@
 import React from "react";
-import ProfileImage from "./ProfileImage";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
@@ -29,7 +28,7 @@ export default function Logined(props) {
                     window.location.replace('/profile')
                 }}>MyPage</MenuItem>
                 <MenuItem style={{ backgroundColor: 'red' }} onClick={() => {
-                    window.location.replace('/api/discord/logout')
+                    window.location.replace('/api/discord/')
                 }}>Logout</MenuItem>
             </Menu>
         </div>
