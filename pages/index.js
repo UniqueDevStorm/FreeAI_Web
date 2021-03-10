@@ -47,8 +47,8 @@ export default function App({ ...key }) {
                 <div>
                     {
                         data === null
-                            ? <Link href='/api/discord/'><Button variant='contained' color="primary" style={{ right: 15, top: 15, position: 'absolute', height: '40px', width: '100px', fontSize: '20px' }}>로그인</Button></Link>
-                            : <Logined data={data} />
+                        ? <Link href='/api/discord/'><Button variant='contained' color="primary" style={{ right: 15, top: 15, position: 'absolute', height: '40px', width: '100px', fontSize: '20px' }}>로그인</Button></Link>
+                        : <Logined data={data} />
                     }
                 </div>
                 <img
