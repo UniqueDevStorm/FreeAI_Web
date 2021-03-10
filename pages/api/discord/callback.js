@@ -4,7 +4,7 @@ import Cookies from 'cookies';
 
 export default async (req, res) => {
     const DISCORD_API_ENDPOINT = 'https://discord.com/api/v8'
-    const REDIRECT_URI = 'http://localhost:3000/api/discord/callback'
+    const REDIRECT_URI = `${process.env.HOST}api/discord/callback`
     const code = req.query.code;
     const params = new URLSearchParams({
         client_id: process.env.CLIENT_ID,

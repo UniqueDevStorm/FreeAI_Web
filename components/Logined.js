@@ -28,7 +28,7 @@ export default function Logined(props) {
                     window.location.replace('/profile')
                 }}>MyPage</MenuItem>
                 <MenuItem style={{ backgroundColor: 'red' }} onClick={() => {
-                    window.location.replace('/api/discord/')
+                    window.location.replace('/api/discord/logout')
                 }}>Logout</MenuItem>
             </Menu>
         </div>
