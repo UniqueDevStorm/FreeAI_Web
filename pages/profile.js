@@ -1,8 +1,8 @@
 import cookie from 'cookie';
 import jwt from 'jsonwebtoken';
-import * as process from "process";
+import process from "process";
 import ProfileImage from "../components/ProfileImage";
-import DataLoader from 'dataloader';
+import { createLoaders, loaders } from "../utils/loaders";
 
 export async function getServerSideProps(ctx) {
     let key = null;
